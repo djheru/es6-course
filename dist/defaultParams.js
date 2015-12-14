@@ -5,9 +5,7 @@ function greet(greeting, name) {
 }
 greet(); // undefined undefined
 
-function greet2(greeting) {
-  var name = arguments.length <= 1 || arguments[1] === undefined ? 'dude' : arguments[1];
-
+function greet2(greeting, name = 'dude') {
   console.log(greeting + ', ' + name);
 }
 greet2(); // undefined dude
@@ -21,30 +19,19 @@ function fcn1(cb) {
 //fcn1();//throw error omg "TypeError: cb is not a function"
 
 //param has defalt
-function fcn2() {
-  var cb = arguments.length <= 0 || arguments[0] === undefined ? function () {
-    console.log('ohai you forgot callback');
-  } : arguments[0];
-
+function fcn2(cb = function () {
+  console.log('ohai you forgot callback');
+}) {
   cb();
 }
 fcn2();
 
 //more cleaner
-function fcn3() {
-  var cb = arguments.length <= 0 || arguments[0] === undefined ? function () {
-    return console.log('ohai this way cleaner');
-  } : arguments[0];
-
+function fcn3(cb = () => console.log('ohai this way cleaner')) {
   cb();
 }
 fcn3();
 
 //crazy, man
-var fcn4 = function fcn4() {
-  var cb = arguments.length <= 0 || arguments[0] === undefined ? function () {
-    return console.log('ohai wat ru doing?!?');
-  } : arguments[0];
-  return cb();
-};
+let fcn4 = (cb = () => console.log('ohai wat ru doing?!?')) => cb();
 fcn4();

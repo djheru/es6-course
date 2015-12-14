@@ -1,5 +1,3 @@
-"use strict";
-
 //old school
 var obj = {
   color: "blue"
@@ -7,20 +5,15 @@ var obj = {
 console.log(obj.color);
 
 //new
-var _color = {
+var { color } = {
   color: "red"
 };
-var color = _color.color;
-
 console.log(color);
 
-var _color$position = {
+var { color, position } = {
   color: "red",
   position: "Center"
 };
-var color = _color$position.color;
-var position = _color$position.position;
-
 console.log(color, position);
 
 //example use
@@ -32,27 +25,15 @@ function generateObject() {
     position: "center"
   };
 }
-
-var _generateObject = generateObject();
-
-var color = _generateObject.color;
-var position = _generateObject.position;
-
+var { color, position } = generateObject();
 console.log(color, position);
 //You don't have to keep the key name as the variable name
-
-var _generateObject2 = generateObject();
-
-var TeamName = _generateObject2.name;
-var TeamColor = _generateObject2.color;
-
+var { name: TeamName, color: TeamColor } = generateObject();
 console.log(TeamName, TeamColor);
 
 //destructuring arrays
 var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-var first = colors[0];
-var fifth = colors[4];
-
+var [first,,,, fifth] = colors;
 console.log(first, fifth);
 
 var people = [{
@@ -151,8 +132,4 @@ var people = [{
   "latitude": "-7.507345",
   "longitude": "169.312539"
 }];
-people.forEach(function (_ref) {
-  var personId = _ref._id;
-  var guid = _ref.guid;
-  return console.log(personId, guid);
-});
+people.forEach(({ _id: personId, guid }) => console.log(personId, guid));

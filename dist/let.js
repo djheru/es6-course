@@ -1,5 +1,3 @@
-'use strict';
-
 //let uses block scoping for variables, unlike var
 var msg = 'ohai';
 {
@@ -7,9 +5,9 @@ var msg = 'ohai';
 }
 console.log(msg); //lolgtfo
 
-var msg2 = 'ohai';
+let msg2 = 'ohai';
 {
-  var _msg = 'lolgtfo';
+  let msg2 = 'lolgtfo';
 }
 console.log(msg2); //great for if, for, forEach, etc
 
@@ -26,15 +24,10 @@ fs.forEach(function (f) {
 });
 //
 var fs = [];
-
-var _loop = function _loop(_i) {
+for (let i = 0; i < 10; i++) {
   fs.push(function () {
-    console.log(_i); //each iteration creates a function with a reference to a new 'i'
+    console.log(i); //each iteration creates a function with a reference to a new 'i'
   });
-};
-
-for (var _i = 0; _i < 10; _i++) {
-  _loop(_i);
 }
 
 fs.forEach(function (f) {
@@ -57,10 +50,10 @@ function varFunc(n) {
 }
 
 function letFunc(n) {
-  var previous = 0;
-  var current = 1;
-  for (var _i2 = 0; _i2 < n; _i2 += 1) {
-    var tmp = previous;
+  let previous = 0;
+  let current = 1;
+  for (let i = 0; i < n; i += 1) {
+    let tmp = previous;
     previous = current;
     current = tmp + current;
   }
