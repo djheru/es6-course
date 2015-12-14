@@ -34,8 +34,8 @@ for (let word of greeter2) {
 console.log('two way comms');
 //passing data in next()
 function* greet3() {
-  let yieldParam1 = yield "How";
-  let yieldParam2 = yield yieldParam1 + " are";
+  var yieldParam1 = yield "How";
+  var yieldParam2 = yield yieldParam1 + " are";
   yield yieldParam2 + " you?";
 }
 var greeter3 = greet3();
@@ -47,16 +47,17 @@ console.log(greeter3.next().value);//undefined
 
 //good for infinite things
 function * graph() {
-  let x = 0;
-  let y = 0;
+  var x = 0;
+  var y = 0;
   while(true) {
-    let addNext = yield {x: x, y: y};
-    let incrementer = (addNext === undefined) ? {x: 1, y: 2} : addNext;
+    var addNext = yield {x: x, y: y};
+    var incrementer = (addNext === undefined) ? {x: 1, y: 2} : addNext;
     x += incrementer.x;
     y += incrementer.y;
   }
 }
 var grapher = graph();
+
 console.log(grapher.next().value);
 console.log(grapher.next({x: 1, y: 4}).value);
 console.log(grapher.next({x: 1, y: 2}).value);
